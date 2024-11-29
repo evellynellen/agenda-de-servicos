@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda de Serviços</title>
+    <link rel="stylesheet" href="styles.css">
+
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vindo à Plataforma de Agendamentos!</h1>
+
+        <h2>Login</h2>
+        <form id="loginForm">
+            <input type="email" id="email" placeholder="E-mail" required>
+            <input type="password" id="password" placeholder="Senha" required>
+            <button type="submit">Entrar</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value
+
+
+            const response = await fetch('http://localhost:5000/api/auth/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ email, password })
+            });
+
+
+            const data = await response.json();
+            if (data.token) {
+                alert('Login bem-sucedido');
+            } else {
+                alert('Erro no login');
+            }
+        });
+
+
+            const button = document.querySelector('button');
+            button.disabled = true; // desabilita o butao
+
+            try {
+                const response = await fetch('http://localhost:5000/api/login', {
+                    document.getElementById('loginForm').addEventListener('submit', async (e) => {
+                        e.preventDefault(); // Previne o recarregamento da página
+                        
+                        
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+
+            const button = document.querySelector('button'); // Seleciona o botão
+            button.disabled = true; // Desabilita o botão enquanto o login está sendo processado
+            button.textContent = 'Entrando...'; // Mostra um feedback visual no botão
+
+            try {
+                const response = await fetch('http://localhost:5000/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json', // Certifique-se de que o header está correto
+                        },
+                        body: JSON.stringify({ email, password }) // Envia os dados de login
+                    });
+                        
+                        
+                    if (!response.ok) {
+                            throw new Error('Erro no servidor. Verifique suas credenciais.');
+                        }
+                        
+                        
+                    const data = await response.json();
+                    
+                    
+            if (data.token) {
+                alert('Login bem-sucedido!'); // Feedback de sucesso
+                } else {
+                    alert(data.message || 'Erro no login. Tente novamente.');
+                }
+            } catch (error) {
+                alert(error.message || 'Erro ao se conectar ao servidor.'); // Feedback de erro
+                } finally {
+                    button.disabled = false; // Reabilita o botão
+                    button.textContent = 'Entrar'; // Volta o texto original do botão
+                    }
+                });
+            })
+        }
+    </script>
+</body>
+</html>
